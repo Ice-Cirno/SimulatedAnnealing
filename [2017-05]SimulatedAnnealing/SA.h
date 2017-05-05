@@ -3,7 +3,7 @@
 #include<ctime>
 #include<cmath>
 
-#define TEMPERATURE_INIT 1000000000
+#define TEMPERATURE_INIT 10000000000000000.0
 #define ANEALING_COEFF 0.999
 #define TEMPERATURE_GOAL 0.001
 #define RES 100
@@ -23,7 +23,7 @@ protected:
 	rootT* curr_root;
 	rootT* new_root;
 
-	virtual void ReadFile() = 0;
+	virtual bool ReadFile() = 0;
 	virtual void Init() = 0;
 	virtual void GenerateNew() = 0;
 	virtual double Estimate(rootT*) = 0;
@@ -55,32 +55,35 @@ SA<rootT>::~SA(){
 
 template<typename rootT>
 void SA<rootT>::Do() {
-	double gain;
+	double gain, bestgain;
 
-	ReadFile();
+	if (!ReadFile()) {
+		return;
+	}
 	Init();
 	while (Temperature > TEMPERATURE_GOAL) {
 		int i = RES;
 		while (--i) {
 			GenerateNew();
 			gain = static_cast<int>(_max_or_min) * (Estimate(new_root) - Estimate(curr_root));
-			if (gain < 0) {
-				//fresh bestroot and currroot...
-				for (int i = 0; i < N; ++i)
-					best_root[i] = curr_root[i] = new_root[i];
-#ifdef DEBUG
-				cout << "The best root obtained so far is " << Estimate(best_root) << endl;
-				for (int i = 0; i < n; i++)
-					cout << best_root[i] << " "; cout << endl;
-#endif // DEBUG
-			}
-			else if (AcceptBadRoot(gain)) {
+			bestgain = static_cast<int>(_max_or_min) * (Estimate(new_root) - Estimate(best_root));
+			if (gain < 0 || AcceptBadRoot(gain)) {
 				//fresh currroot...
 				for (int i = 0; i < N; ++i)
 					curr_root[i] = new_root[i];
 			}
+			if (bestgain < 0) {
+				//fresh bestroot...
+				for (int i = 0; i < N; ++i)
+					best_root[i] = new_root[i];
+#ifdef DEBUG
+				std::cout << "The best root obtained so far is " << Estimate(best_root) << std::endl;
+				for (int i = 0; i < N; i++)
+					std::cout << best_root[i] << " "; std::cout << std::endl;
+#endif // DEBUG
+			}
+			
 		}
 		Temperature *= ANEALING_COEFF;
 	}
-
 }
