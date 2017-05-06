@@ -12,7 +12,10 @@ bool TSP::ReadFile() {
 		std::cout << "Cannot open " << FileIn << std::endl;
 		return false;
 	}
-
+	else{
+		std::cout << FileIn << " opened." << std::endl;
+	}
+	
 	fin >> N;
 	x = new double[N];
 	y = new double[N];
@@ -30,6 +33,8 @@ bool TSP::ReadFile() {
 			fin >> distance[i][j];
 		}
 	}
+	fin.close();
+	return true;
 }
 
 void TSP::Init(){
@@ -73,7 +78,7 @@ TSP::TSP(){
 
 
 TSP::~TSP()
-{
+{/*
 	if (x != nullptr) delete[] x;
 	if (y != nullptr) delete[] y;
 	if (distance != nullptr) {
@@ -82,7 +87,4 @@ TSP::~TSP()
 		}
 		delete[] distance;
 	}
-	if (fin) {
-		fin.close();
-	}
-}
+*/}

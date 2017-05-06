@@ -2,6 +2,7 @@
 #include<cstdlib>
 #include<ctime>
 #include<cmath>
+#include<iostream>
 
 #define TEMPERATURE_INIT 10000000000000000.0
 #define ANEALING_COEFF 0.999
@@ -31,7 +32,7 @@ protected:
 public:
 	SA();
 	virtual ~SA();
-	void Do();
+	virtual void Do() final;
 };
 
 template<typename rootT>
@@ -48,9 +49,9 @@ SA<rootT>::SA() :Temperature(TEMPERATURE_INIT) {
 
 template<typename rootT>
 SA<rootT>::~SA(){
-	if (best_root) delete[] best_root;
+	/*if (best_root) delete[] best_root;
 	if (curr_root) delete[] curr_root;
-	if (new_root) delete[] new_root;
+	if (new_root) delete[] new_root;*/
 }
 
 template<typename rootT>
@@ -77,6 +78,7 @@ void SA<rootT>::Do() {
 				for (int i = 0; i < N; ++i)
 					best_root[i] = new_root[i];
 #ifdef DEBUG
+				std::cout << "Temperature now is " << Temperature << std::endl;
 				std::cout << "The best root obtained so far is " << Estimate(best_root) << std::endl;
 				for (int i = 0; i < N; i++)
 					std::cout << best_root[i] << " "; std::cout << std::endl;
@@ -86,4 +88,7 @@ void SA<rootT>::Do() {
 		}
 		Temperature *= ANEALING_COEFF;
 	}
+	std::cout << "The best root finally obtained is " << Estimate(best_root) << std::endl;
+	for (int i = 0; i < N; i++)
+		std::cout << best_root[i] << " "; std::cout << std::endl;
 }
