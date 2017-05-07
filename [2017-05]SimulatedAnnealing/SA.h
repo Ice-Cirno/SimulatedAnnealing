@@ -1,4 +1,5 @@
 #pragma once
+#define DEBUG
 #include<cstdlib>
 #include<ctime>
 #include<cmath>

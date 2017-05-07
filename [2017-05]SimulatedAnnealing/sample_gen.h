@@ -18,7 +18,7 @@ bool Knapsack_sample_generator(int n, const std::string & _path = "") {
 	}
 
 	srand(time(0));
-	fout << getrand_0to1() * 1000.0 + 1.0 << std::endl
+	fout << getrand_0to1() * 10000.0 + 1.0 << std::endl
 		<< n << std::endl;
 	for (int i = 0; i < n; ++i) {
 		fout << getrand_0to1() * 100.0 + 0.0001 << ' ' << getrand_0to1() * 100.0 << std::endl;

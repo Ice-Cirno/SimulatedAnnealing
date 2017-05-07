@@ -33,10 +33,15 @@ void Knapsack::GenerateNew() {
 	for (int i = 0; i < N; ++i) {
 		new_root[i] = curr_root[i];
 	}
-	do {
+	while(true) {
 		int pos = rand() % N;
 		new_root[pos] = (!new_root[pos]);
-	} while (getweight(new_root) > cap);
+		if (getweight(new_root) > cap) {
+			new_root[pos] = (!new_root[pos]);
+			continue;
+		}
+		else break;
+	}
 }
 
 double Knapsack::Estimate(bool * root) {

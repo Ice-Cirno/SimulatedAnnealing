@@ -1,5 +1,3 @@
-#define DEBUG
-
 #include<iostream>
 #include<cstdlib>
 #include<string>
@@ -14,7 +12,7 @@ void TSPtest() {
 	TSP test;
 	string defaultfile[]{ "sample-input-files/TSP-100.txt","sample-input-files/TSP-250.txt","sample-input-files/TSP-500.txt" };
 	int filechoice = 0;
-	do {
+	while(true) {
 		cout << "1. " << defaultfile[0] << endl
 			<< "2. " << defaultfile[1] << endl
 			<< "3. " << defaultfile[2] << endl
@@ -24,15 +22,17 @@ void TSPtest() {
 
 		if (filechoice == 0) {
 			cout << "path = "; cin >> inputfile;
+			break;
 		}
 		else if (filechoice > 0 && filechoice <= 3) {
 			inputfile = defaultfile[filechoice - 1];
+			break;
 		}
 		else { 
 			cout << "Unexpected input!" << endl; 
 			continue;
 		}
-	} while (false);
+	}
 	if (test.setFileIn(inputfile))
 		test.Do();
 }
@@ -41,7 +41,7 @@ void Knapsacktest() {
 	Knapsack test;
 	string defaultfile[]{ "sample-input-files/Knapsack-100.txt","sample-input-files/Knapsack-250.txt","sample-input-files/Knapsack-500.txt" };
 	int filechoice = 0;
-	do {
+	while(true) {
 		cout << "1. " << defaultfile[0] << endl
 			<< "2. " << defaultfile[1] << endl
 			<< "3. " << defaultfile[2] << endl
@@ -51,15 +51,17 @@ void Knapsacktest() {
 
 		if (filechoice == 0) {
 			cout << "path = "; cin >> inputfile;
+			break;
 		}
 		else if (filechoice > 0 && filechoice <= 3) {
 			inputfile = defaultfile[filechoice - 1];
+			break;
 		}
 		else {
 			cout << "Unexpected input!" << endl;
 			continue;
 		}
-	} while (false);
+	}
 	if (test.setFileIn(inputfile))
 		test.Do();
 }
@@ -98,6 +100,9 @@ int test() {
 }
 
 int main() {
+	//Knapsack_sample_generator(100);
+	//Knapsack_sample_generator(250);
+	//Knapsack_sample_generator(500);
 	test();
 	return 0;
 }
