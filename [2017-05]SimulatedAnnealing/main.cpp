@@ -3,11 +3,14 @@
 #include<iostream>
 #include<cstdlib>
 #include"TSP.h"
+#include"Knapsack.h"
 
 int main() {
-	TSP test;
-	test.setFileIn("sample-input-files/TSP-100.txt");
-	std::cout << "FileIn set." << std::endl;
+	TSP TSPtest;
+	Knapsack Knapsacktest;
+
+
+	if(test.setFileIn("sample-input-files/TSP-100.txt"))
 	test.Do();
 
 	//system("pause");

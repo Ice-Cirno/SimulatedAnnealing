@@ -1,7 +1,5 @@
 #pragma once
 #include "SA.h"
-#include<fstream>
-#include<string>
 
 class Knapsack : public SA<bool>
 {
@@ -12,18 +10,14 @@ private:
 
 	double getweight(bool*);
 
-	std::string FileIn;
-	std::ifstream fin;
-
 protected:
-	bool ReadFile();
+	void ReadFile();
 	void Init();
 	void GenerateNew();
 	double Estimate(bool*);
 
 public:
 	Knapsack();
-	void setFileIn(const std::string&);
 	virtual ~Knapsack();
 };
 

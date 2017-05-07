@@ -3,6 +3,7 @@
 #include<ctime>
 #include<cmath>
 #include<iostream>
+#include<fstream>
 #include<string>
 
 #define TEMPERATURE_INIT 10000000000000000.0
@@ -36,8 +37,8 @@ protected:
 public:
 	SA();
 	virtual ~SA();
-	void Do() final;
-	bool setFileIn(const std::string&);
+	virtual void Do() final;
+	virtual bool setFileIn(const std::string&) final;
 };
 
 template<typename rootT>

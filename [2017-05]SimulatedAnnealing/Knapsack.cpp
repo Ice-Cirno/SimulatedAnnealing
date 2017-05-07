@@ -1,28 +1,14 @@
 #include "Knapsack.h"
 
-void Knapsack::setFileIn(const std::string& _name) {
-	FileIn = _name;
-}
-
 double Knapsack::getweight(bool * root) {
 	double total_weight = 0;
 	for (int i = 0; i < N; ++i) {
 		total_weight += root[i] * weight[i];
 	}
-
 	return total_weight;
 }
 
-bool Knapsack::ReadFile() {
-	fin.open(FileIn);
-	if (!fin) {
-		std::cout << "Cannot open " << FileIn << std::endl;
-		return false;
-	}
-	else {
-		std::cout << FileIn << " opened." << std::endl;
-	}
-
+void Knapsack::ReadFile() {
 	fin >> cap >> N;
 	weight = new double[N];
 	value = new double[N];
@@ -35,7 +21,6 @@ bool Knapsack::ReadFile() {
 	}
 
 	fin.close();
-	return true;
 }
 
 void Knapsack::Init(){
@@ -51,10 +36,10 @@ void Knapsack::GenerateNew() {
 	for (int i = 0; i < N; ++i) {
 		new_root[i] = curr_root[i];
 	}
-
-
-
-
+	do {
+		int pos = rand() % N;
+		new_root[pos] = (!new_root[pos]);
+	} while (getweight(new_root) > cap);
 }
 
 double Knapsack::Estimate(bool * root) {
@@ -62,16 +47,19 @@ double Knapsack::Estimate(bool * root) {
 	for (int i = 0; i < N; ++i) {
 		total_value += root[i] * value[i];
 	}
-
 	return total_value;
 }
 
 
-Knapsack::Knapsack(){
+Knapsack::Knapsack() {
 	_max_or_min = max;
 }
 
 
-Knapsack::~Knapsack(){
-
+Knapsack::~Knapsack() {
+	/*******************************************************
+	May crash on some platforms? Throw it to your compiler!
+	if (weight) delete[] weight;
+	if (value) delete[] value;
+	********************************************************/
 }

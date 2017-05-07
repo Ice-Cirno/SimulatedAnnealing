@@ -62,7 +62,9 @@ TSP::TSP(){
 }
 
 
-TSP::~TSP() {/*
+TSP::~TSP() {
+	/*******************************************************
+	May crash on some platforms? Throw it to your compiler!
 	if (x != nullptr) delete[] x;
 	if (y != nullptr) delete[] y;
 	if (distance != nullptr) {
@@ -71,5 +73,5 @@ TSP::~TSP() {/*
 		}
 		delete[] distance;
 	}
-*/
+	********************************************************/
 }
