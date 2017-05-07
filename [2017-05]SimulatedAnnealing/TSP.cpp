@@ -1,21 +1,7 @@
 #include "TSP.h"
-#include<fstream>
 #include<iostream>
 
-void TSP::setFileIn(const std::string& _name) {
-	FileIn = _name;
-}
-
-bool TSP::ReadFile() {
-	fin.open(FileIn);
-	if (!fin) {
-		std::cout << "Cannot open " << FileIn << std::endl;
-		return false;
-	}
-	else{
-		std::cout << FileIn << " opened." << std::endl;
-	}
-	
+void TSP::ReadFile() {
 	fin >> N;
 	x = new double[N];
 	y = new double[N];
@@ -34,7 +20,6 @@ bool TSP::ReadFile() {
 		}
 	}
 	fin.close();
-	return true;
 }
 
 void TSP::Init(){
@@ -77,8 +62,7 @@ TSP::TSP(){
 }
 
 
-TSP::~TSP()
-{/*
+TSP::~TSP() {/*
 	if (x != nullptr) delete[] x;
 	if (y != nullptr) delete[] y;
 	if (distance != nullptr) {
@@ -87,4 +71,5 @@ TSP::~TSP()
 		}
 		delete[] distance;
 	}
-*/}
+*/
+}

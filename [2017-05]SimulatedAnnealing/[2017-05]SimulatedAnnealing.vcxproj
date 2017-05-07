@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Knapsack.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TSP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Knapsack.h" />
     <ClInclude Include="SA.h" />
     <ClInclude Include="TSP.h" />
   </ItemGroup>

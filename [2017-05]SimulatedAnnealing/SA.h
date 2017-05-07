@@ -3,6 +3,7 @@
 #include<ctime>
 #include<cmath>
 #include<iostream>
+#include<string>
 
 #define TEMPERATURE_INIT 10000000000000000.0
 #define ANEALING_COEFF 0.999
@@ -18,13 +19,16 @@ private:
 	bool AcceptBadRoot(double);
 
 protected:
+	std::string FileIn;
+	std::ifstream fin;
+	
 	int N;
 	Max_or_Min _max_or_min;
 	rootT* best_root;
 	rootT* curr_root;
 	rootT* new_root;
 
-	virtual bool ReadFile() = 0;
+	virtual void ReadFile() = 0;
 	virtual void Init() = 0;
 	virtual void GenerateNew() = 0;
 	virtual double Estimate(rootT*) = 0;
@@ -32,7 +36,8 @@ protected:
 public:
 	SA();
 	virtual ~SA();
-	virtual void Do() final;
+	void Do() final;
+	bool setFileIn(const std::string&);
 };
 
 template<typename rootT>
@@ -58,9 +63,11 @@ template<typename rootT>
 void SA<rootT>::Do() {
 	double gain, bestgain;
 
-	if (!ReadFile()) {
+	if (!fin) {
+		std::cout << "failed to open input file..." << std::endl;
 		return;
 	}
+	ReadFile();
 	Init();
 	while (Temperature > TEMPERATURE_GOAL) {
 		int i = RES;
@@ -92,3 +99,16 @@ void SA<rootT>::Do() {
 	for (int i = 0; i < N; i++)
 		std::cout << best_root[i] << " "; std::cout << std::endl;
 }
+
+template<typename rootT>
+bool SA<rootT>::setFileIn(const std::string& _name) {
+	FileIn = _name;
+	fin.open(FileIn);
+	if (!fin) {
+		std::cout << "Cannot open " << FileIn << std::endl;
+		return false;
+	}
+	std::cout << FileIn << " opened successfully." << std::endl;
+	return true;
+}
+
