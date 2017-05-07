@@ -13,3 +13,5 @@ main()会将最后退火的得到的最优解输出，如果#define DEBUG可在�
 可在main.cpp中更改所用的测试样例。
 
 测试样例放在sample-input-files文件夹下。
+
+#赶在ddl前2分钟提交是一种怎样的体验？
