@@ -1,3 +1,4 @@
+#pragma once
 #include<fstream>
 #include<string>
 #include<ctime>
@@ -22,12 +23,12 @@ bool Knapsack_sample_generator(int n, const std::string & _path = "") {
 	for (int i = 0; i < n; ++i) {
 		fout << getrand_0to1() * 100.0 + 0.0001 << ' ' << getrand_0to1() * 100.0 << std::endl;
 	}
-	
+
 	fout.close();
 	return true;
 }
 
-bool TSP_sample_generator(int n , const std::string & _path = "") {
+bool TSP_sample_generator(int n, const std::string & _path = "") {
 	std::string defaultFile("sample-input-files/TSP-" + std::to_string(n) + ".txt");
 	std::string path = (_path == "") ? defaultFile : _path;
 	std::ofstream fout;
@@ -55,6 +56,17 @@ bool TSP_sample_generator(int n , const std::string & _path = "") {
 			double dy = y[i] - y[j];
 			distance[i][j] = distance[j][i] = sqrt(dx*dx + dy*dy);
 		}
+	}
+
+	fout << n << std::endl;
+	for (int i = 0; i < n; ++i) {
+		fout << x[i] << ' ' << y[i] << std::endl;
+	}
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < n; ++j) {
+			fout << distance[i][j] << ' ';
+		}
+		fout << std::endl;
 	}
 
 	fout.close();

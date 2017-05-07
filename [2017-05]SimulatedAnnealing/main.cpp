@@ -5,6 +5,7 @@
 #include<string>
 #include"TSP.h"
 #include"Knapsack.h"
+#include"sample_gen.h"
 using namespace std;
 
 string inputfile;
@@ -63,7 +64,7 @@ void Knapsacktest() {
 		test.Do();
 }
 
-int main() {
+int test() {
 	cout << "/ * * * * * * * * * Welcome! * * * * * * * * * /" << endl;
 	int choice = -1;
 	while (choice) {
@@ -93,5 +94,10 @@ int main() {
 	}
 
 	//system("pause");
+	return 0;
+}
+
+int main() {
+	test();
 	return 0;
 }
