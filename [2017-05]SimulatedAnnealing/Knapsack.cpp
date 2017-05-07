@@ -14,10 +14,7 @@ void Knapsack::ReadFile() {
 	value = new double[N];
 
 	for (int i = 0; i < N; ++i) {
-		fin >> weight[i];
-	}
-	for (int i = 0; i < N; ++i) {
-		fin >> value[i];
+		fin >> weight[i] >> value[i];
 	}
 
 	fin.close();

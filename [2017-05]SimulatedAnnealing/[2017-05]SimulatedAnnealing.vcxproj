@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Knapsack.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sample_gen.cpp" />
     <ClCompile Include="TSP.cpp" />
   </ItemGroup>
   <ItemGroup>

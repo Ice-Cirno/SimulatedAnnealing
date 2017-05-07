@@ -24,6 +24,9 @@
     <ClCompile Include="Knapsack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="sample_gen.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SA.h">
